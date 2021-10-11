@@ -5,66 +5,66 @@
 
 using namespace std;
 using namespace std::chrono;
-using namespace System::Globalization; // Для NumberStyles::AllowHexSpecifier
+using namespace System::Globalization; // Г„Г«Гї NumberStyles::AllowHexSpecifier
 using namespace System::Numerics;
 using namespace System;
 
-void input(string message, string el)  // Ввод элементов
+void input(string message, string el)  // Г‚ГўГ®Г¤ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
 {
-	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // Получаем дескриптор консоли
-	SetConsoleTextAttribute(hStdOut, 7);  // Меняем цвет текста на серый
-	cout << message;  // Выводим сообщение
-	SetConsoleTextAttribute(hStdOut, 15);  // Меняем цвет текста на белый
-	cin >> el; // Вводим элемент
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // ГЏГ®Г«ГіГ·Г ГҐГ¬ Г¤ГҐГ±ГЄГ°ГЁГЇГІГ®Г° ГЄГ®Г­Г±Г®Г«ГЁ
+	SetConsoleTextAttribute(hStdOut, 7);  // ГЊГҐГ­ГїГҐГ¬ Г¶ГўГҐГІ ГІГҐГЄГ±ГІГ  Г­Г  Г±ГҐГ°Г»Г©
+	cout << message;  // Г‚Г»ГўГ®Г¤ГЁГ¬ Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ
+	SetConsoleTextAttribute(hStdOut, 15);  // ГЊГҐГ­ГїГҐГ¬ Г¶ГўГҐГІ ГІГҐГЄГ±ГІГ  Г­Г  ГЎГҐГ«Г»Г©
+	cin >> el; // Г‚ГўГ®Г¤ГЁГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІ
 }
 
-void print(string message, BigInteger el)  // Вывод элементов
+void print(string message, BigInteger el)  // Г‚Г»ГўГ®Г¤ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
 {
-	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // Получаем дескриптор консоли
-	SetConsoleTextAttribute(hStdOut, 7);  // Меняем цвет текста на серый
-	cout << message;  // Выводим сообщение
-	SetConsoleTextAttribute(hStdOut, 15);  // Меняем цвет текста на белый
-	Console::WriteLine(el);  // Выводим элемент
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // ГЏГ®Г«ГіГ·Г ГҐГ¬ Г¤ГҐГ±ГЄГ°ГЁГЇГІГ®Г° ГЄГ®Г­Г±Г®Г«ГЁ
+	SetConsoleTextAttribute(hStdOut, 7);  // ГЊГҐГ­ГїГҐГ¬ Г¶ГўГҐГІ ГІГҐГЄГ±ГІГ  Г­Г  Г±ГҐГ°Г»Г©
+	cout << message;  // Г‚Г»ГўГ®Г¤ГЁГ¬ Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ
+	SetConsoleTextAttribute(hStdOut, 15);  // ГЊГҐГ­ГїГҐГ¬ Г¶ГўГҐГІ ГІГҐГЄГ±ГІГ  Г­Г  ГЎГҐГ«Г»Г©
+	Console::WriteLine(el);  // Г‚Г»ГўГ®Г¤ГЁГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІ
 }
 
-void print(string message, string el)  // Вывод элементов
+void print(string message, string el)  // Г‚Г»ГўГ®Г¤ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
 {
-	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // Получаем дескриптор консоли
-	SetConsoleTextAttribute(hStdOut, 7);  // Меняем цвет текста на серый
-	cout << message;  // Выводим сообщение
-	SetConsoleTextAttribute(hStdOut, 15);  // Меняем цвет текста на белый
-	cout << el << endl;  // Выводим элемент
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // ГЏГ®Г«ГіГ·Г ГҐГ¬ Г¤ГҐГ±ГЄГ°ГЁГЇГІГ®Г° ГЄГ®Г­Г±Г®Г«ГЁ
+	SetConsoleTextAttribute(hStdOut, 7);  // ГЊГҐГ­ГїГҐГ¬ Г¶ГўГҐГІ ГІГҐГЄГ±ГІГ  Г­Г  Г±ГҐГ°Г»Г©
+	cout << message;  // Г‚Г»ГўГ®Г¤ГЁГ¬ Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ
+	SetConsoleTextAttribute(hStdOut, 15);  // ГЊГҐГ­ГїГҐГ¬ Г¶ГўГҐГІ ГІГҐГЄГ±ГІГ  Г­Г  ГЎГҐГ«Г»Г©
+	cout << el << endl;  // Г‚Г»ГўГ®Г¤ГЁГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІ
 }
-string elapsedTime(time_point<system_clock> start, time_point<system_clock> end)  // Конвертирование время в строку
+string elapsedTime(time_point<system_clock> start, time_point<system_clock> end)  // ГЉГ®Г­ГўГҐГ°ГІГЁГ°Г®ГўГ Г­ГЁГҐ ГўГ°ГҐГ¬Гї Гў Г±ГІГ°Г®ГЄГі
 {
-	int count = duration_cast<microseconds>(end - start).count();  // Считаем прошедшее время
-	return count > 1000 ? to_string(count / 1000) + " мс." : to_string(count) + " мкс.";  // Возвращаем строку
+	int count = duration_cast<microseconds>(end - start).count();  // Г‘Г·ГЁГІГ ГҐГ¬ ГЇГ°Г®ГёГҐГ¤ГёГҐГҐ ГўГ°ГҐГ¬Гї
+	return count > 1000 ? to_string(count / 1000) + " Г¬Г±." : to_string(count) + " Г¬ГЄГ±.";  // Г‚Г®Г§ГўГ°Г Г№Г ГҐГ¬ Г±ГІГ°Г®ГЄГі
 }
 
-long elapsedTime2(time_point<system_clock> start, time_point<system_clock> end)  // Конвертирование время в строку
+long elapsedTime2(time_point<system_clock> start, time_point<system_clock> end)  // ГЉГ®Г­ГўГҐГ°ГІГЁГ°Г®ГўГ Г­ГЁГҐ ГўГ°ГҐГ¬Гї Гў Г±ГІГ°Г®ГЄГі
 {
-	return duration_cast<microseconds>(end - start).count();  // Возвращаем прошедшее время в мкс
+	return duration_cast<microseconds>(end - start).count();  // Г‚Г®Г§ГўГ°Г Г№Г ГҐГ¬ ГЇГ°Г®ГёГҐГ¤ГёГҐГҐ ГўГ°ГҐГ¬Гї Гў Г¬ГЄГ±
 }
 
 static BigInteger mod(BigInteger a, BigInteger b)
 {
-	if (a > BigInteger(0))  // Если делимое больше 0
-		return a % b;  // Возвращаем модуль a на b
-	if ((a % b) != BigInteger(0))  // Если модуль не равен 0
-		// Возвращаем остаток от деления
+	if (a > BigInteger(0))  // Г…Г±Г«ГЁ Г¤ГҐГ«ГЁГ¬Г®ГҐ ГЎГ®Г«ГјГёГҐ 0
+		return a % b;  // Г‚Г®Г§ГўГ°Г Г№Г ГҐГ¬ Г¬Г®Г¤ГіГ«Гј a Г­Г  b
+	if ((a % b) != BigInteger(0))  // Г…Г±Г«ГЁ Г¬Г®Г¤ГіГ«Гј Г­ГҐ Г°Г ГўГҐГ­ 0
+		// Г‚Г®Г§ГўГ°Г Г№Г ГҐГ¬ Г®Г±ГІГ ГІГ®ГЄ Г®ГІ Г¤ГҐГ«ГҐГ­ГЁГї
 		return BigInteger::Subtract(BigInteger::Multiply(BigInteger::Add(BigInteger::Divide(BigInteger::Abs(a),
 			b), BigInteger(1)), b), BigInteger::Abs(a));
-	return 0;  // Возвращаем 0
+	return 0;  // Г‚Г®Г§ГўГ°Г Г№Г ГҐГ¬ 0
 }
 
 void print(BigInteger a, BigInteger b, BigInteger c, BigInteger mod_amount) {
 	BigInteger result;
-	time_point<system_clock> start, end;  // Переменные для измерения времени
+	time_point<system_clock> start, end;  // ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Г¤Г«Гї ГЁГ§Г¬ГҐГ°ГҐГ­ГЁГї ГўГ°ГҐГ¬ГҐГ­ГЁ
 
-	print("Первый элемент (a): ", a);
-	print("Второй элемент (b): ", b);
-	print("Третий элемент (c): ", c);
-	print("Модуль (mod): ", mod_amount);
+	print("ГЏГҐГ°ГўГ»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ (a): ", a);
+	print("Г‚ГІГ®Г°Г®Г© ГЅГ«ГҐГ¬ГҐГ­ГІ (b): ", b);
+	print("Г’Г°ГҐГІГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ (c): ", c);
+	print("ГЊГ®Г¤ГіГ«Гј (mod): ", mod_amount);
 	cout << endl;
 
 	start = system_clock::now();
@@ -75,64 +75,64 @@ void print(BigInteger a, BigInteger b, BigInteger c, BigInteger mod_amount) {
 	c = mod(c, mod_amount);
 	end = system_clock::now();
 
-	print("Третий элемент по модулю:", c);
-	print("Время работы операции взятия по модулю: ", elapsedTime(start, end));
+	print("Г’Г°ГҐГІГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ ГЇГ® Г¬Г®Г¤ГіГ«Гѕ:", c);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ ГўГ§ГїГІГЁГї ГЇГ® Г¬Г®Г¤ГіГ«Гѕ: ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = mod(BigInteger::Add(c, a), mod_amount);
 	end = system_clock::now();
 
-	print("Сумма первого и третьего по модулю: ", result);
-	print("Время работы операции сложения: ", elapsedTime(start, end));
+	print("Г‘ГіГ¬Г¬Г  ГЇГҐГ°ГўГ®ГЈГ® ГЁ ГІГ°ГҐГІГјГҐГЈГ® ГЇГ® Г¬Г®Г¤ГіГ«Гѕ: ", result);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ Г±Г«Г®Г¦ГҐГ­ГЁГї: ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = mod(BigInteger::Subtract(a, b), mod_amount);
 	end = system_clock::now();
 
-	print("Разница первого элемента и второго по модулю: ", result);
-	print("Время работы операции разница: ", elapsedTime(start, end));
+	print("ГђГ Г§Г­ГЁГ¶Г  ГЇГҐГ°ГўГ®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  ГЁ ГўГІГ®Г°Г®ГЈГ® ГЇГ® Г¬Г®Г¤ГіГ«Гѕ: ", result);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ Г°Г Г§Г­ГЁГ¶Г : ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = mod(BigInteger::Multiply(a, b), mod_amount);
 	end = system_clock::now();
 
-	print("Умножение первого элемента на второй по модулю: ", result);
-	print("Время работы операции умножения: ", elapsedTime(start, end));
+	print("Г“Г¬Г­Г®Г¦ГҐГ­ГЁГҐ ГЇГҐГ°ГўГ®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  Г­Г  ГўГІГ®Г°Г®Г© ГЇГ® Г¬Г®Г¤ГіГ«Гѕ: ", result);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ ГіГ¬Г­Г®Г¦ГҐГ­ГЁГї: ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = mod(BigInteger::Pow(a, 2), mod_amount);
 	end = system_clock::now();
 
-	print("Возведение первого элемента в квадрат по модулю (моя функция): ", result);
-	print("Время работы операции возведения в квадрат первого элемента: ", elapsedTime(start, end));
+	print("Г‚Г®Г§ГўГҐГ¤ГҐГ­ГЁГҐ ГЇГҐГ°ГўГ®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  Гў ГЄГўГ Г¤Г°Г ГІ ГЇГ® Г¬Г®Г¤ГіГ«Гѕ (Г¬Г®Гї ГґГіГ­ГЄГ¶ГЁГї): ", result);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ ГўГ®Г§ГўГҐГ¤ГҐГ­ГЁГї Гў ГЄГўГ Г¤Г°Г ГІ ГЇГҐГ°ГўГ®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ : ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = BigInteger::ModPow(a, BigInteger(2), mod_amount);
 	end = system_clock::now();
 
-	print("Возведение первого элемента в квадрат по модулю (встроенная функция): ", result);
-	print("Время работы операции возведения в квадрат первого элемента: ", elapsedTime(start, end));
+	print("Г‚Г®Г§ГўГҐГ¤ГҐГ­ГЁГҐ ГЇГҐГ°ГўГ®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  Гў ГЄГўГ Г¤Г°Г ГІ ГЇГ® Г¬Г®Г¤ГіГ«Гѕ (ГўГ±ГІГ°Г®ГҐГ­Г­Г Гї ГґГіГ­ГЄГ¶ГЁГї): ", result);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ ГўГ®Г§ГўГҐГ¤ГҐГ­ГЁГї Гў ГЄГўГ Г¤Г°Г ГІ ГЇГҐГ°ГўГ®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ : ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = BigInteger::Divide(a, b);
 	end = system_clock::now();
 
-	print("Целая часть от деления a на b: ", result);
-	print("Время работы операции деление: ", elapsedTime(start, end));
+	print("Г–ГҐГ«Г Гї Г·Г Г±ГІГј Г®ГІ Г¤ГҐГ«ГҐГ­ГЁГї a Г­Г  b: ", result);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ Г¤ГҐГ«ГҐГ­ГЁГҐ: ", elapsedTime(start, end));
 	cout << endl;
 
-	print("Тест на корректность (проверка дистрибутивности): ", "");
-	print("Наш первый элемент (a): ", a);
-	print("Наш второй элемент (b): ", b);
-	print("Наш третий элемент (c): ", BigInteger::Subtract(c, BigInteger(1)));
-	print("Результат (a+b)*c : ", mod(BigInteger::Multiply(BigInteger::Add(a, b), BigInteger::Subtract(c, BigInteger(1))), mod_amount));
-	print("Результат b*c+c*a : ", mod(BigInteger::Add(BigInteger::Multiply(b, BigInteger::Subtract(c, BigInteger(1))), BigInteger::Multiply(BigInteger::Subtract(c, BigInteger(1)), a)), mod_amount));
+	print("Г’ГҐГ±ГІ Г­Г  ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г±ГІГј (ГЇГ°Г®ГўГҐГ°ГЄГ  Г¤ГЁГ±ГІГ°ГЁГЎГіГІГЁГўГ­Г®Г±ГІГЁ): ", "");
+	print("ГЌГ Гё ГЇГҐГ°ГўГ»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ (a): ", a);
+	print("ГЌГ Гё ГўГІГ®Г°Г®Г© ГЅГ«ГҐГ¬ГҐГ­ГІ (b): ", b);
+	print("ГЌГ Гё ГІГ°ГҐГІГЁГ© ГЅГ«ГҐГ¬ГҐГ­ГІ (c): ", BigInteger::Subtract(c, BigInteger(1)));
+	print("ГђГҐГ§ГіГ«ГјГІГ ГІ (a+b)*c : ", mod(BigInteger::Multiply(BigInteger::Add(a, b), BigInteger::Subtract(c, BigInteger(1))), mod_amount));
+	print("ГђГҐГ§ГіГ«ГјГІГ ГІ b*c+c*a : ", mod(BigInteger::Add(BigInteger::Multiply(b, BigInteger::Subtract(c, BigInteger(1))), BigInteger::Multiply(BigInteger::Subtract(c, BigInteger(1)), a)), mod_amount));
 	cout << endl;
 }
 
@@ -143,12 +143,12 @@ void average_time_count(BigInteger a, BigInteger b, BigInteger mod_amount) {
 	BigInteger average_time_count_sub = BigInteger(0);
 	BigInteger average_time_count_mul = BigInteger(0);
 	BigInteger average_time_count_div = BigInteger(0);
-	time_point<system_clock> start, end;  // Переменные для измерения времени
+	time_point<system_clock> start, end;  // ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Г¤Г«Гї ГЁГ§Г¬ГҐГ°ГҐГ­ГЁГї ГўГ°ГҐГ¬ГҐГ­ГЁ
 	start = system_clock::now();
 	a = mod(a, mod_amount);
 	end = system_clock::now();
 
-	while (BigInteger::Compare(num_iter, BigInteger(1000000000)) != 0) { // Пока не пройдет 1000 итераций, делаем
+	while (BigInteger::Compare(num_iter, BigInteger(1000000000)) != 0) { // ГЏГ®ГЄГ  Г­ГҐ ГЇГ°Г®Г©Г¤ГҐГІ 1000 ГЁГІГҐГ°Г Г¶ГЁГ©, Г¤ГҐГ«Г ГҐГ¬
 
 		start = system_clock::now();
 		result = BigInteger::Add(a, b);
@@ -178,16 +178,16 @@ void average_time_count(BigInteger a, BigInteger b, BigInteger mod_amount) {
 	average_time_count_sub = BigInteger::Divide(average_time_count_sub, BigInteger(1000000000));
 	average_time_count_mul = BigInteger::Divide(average_time_count_mul, BigInteger(1000000000));
 	average_time_count_div = BigInteger::Divide(average_time_count_div, BigInteger(1000000000));
-	print("Время работы операции Add: ", average_time_count_add);
-	print("Время работы операции Subtract: ", average_time_count_sub);
-	print("Время работы операции Multiply: ", average_time_count_mul);
-	print("Время работы операции Divide: ", average_time_count_div);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ Add: ", average_time_count_add);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ Subtract: ", average_time_count_sub);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ Multiply: ", average_time_count_mul);
+	print("Г‚Г°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г®ГЇГҐГ°Г Г¶ГЁГЁ Divide: ", average_time_count_div);
 }
 
 void main()
 {
-	setlocale(LC_ALL, "rus");  // Поддержка кириллицы
-	// Переменные (seed)
+	setlocale(LC_ALL, "rus");  // ГЏГ®Г¤Г¤ГҐГ°Г¦ГЄГ  ГЄГЁГ°ГЁГ«Г«ГЁГ¶Г»
+	// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ (seed)
 	BigInteger a_256 = BigInteger::Subtract(BigInteger::Pow(BigInteger(2), 256), BigInteger(50000000000));
 	BigInteger b_256 = BigInteger::Subtract(BigInteger::Pow(BigInteger(2), 256), BigInteger(10000000000));
 	BigInteger c_256 = BigInteger::Add(BigInteger::Pow(BigInteger(2), 256), BigInteger(500));
@@ -204,7 +204,7 @@ void main()
 	BigInteger b_2048 = BigInteger::Subtract(BigInteger::Pow(BigInteger(2), 2048), BigInteger(10000000000));
 	BigInteger c_2048 = BigInteger::Add(BigInteger::Pow(BigInteger(2), 2048), BigInteger(500));
 
-	// Модули
+	// ГЊГ®Г¤ГіГ«ГЁ
 	BigInteger mod_256 = BigInteger::Pow(BigInteger(2), 256);
 	BigInteger mod_512 = BigInteger::Pow(BigInteger(2), 512);
 	BigInteger mod_1024 = BigInteger::Pow(BigInteger(2), 1024);
@@ -218,13 +218,13 @@ void main()
 	cout << endl;
 	print(a_2048, b_2048, c_2048, mod_2048);
 	cout << "-------------------------------------------------------" <<endl;
-	cout << "Замеры среднего времени базовых операций по модулю 2^256 для 1000000000 итераций (в мкс): " << endl;
+	cout << "Г‡Г Г¬ГҐГ°Г» Г±Г°ГҐГ¤Г­ГҐГЈГ® ГўГ°ГҐГ¬ГҐГ­ГЁ ГЎГ Г§Г®ГўГ»Гµ Г®ГЇГҐГ°Г Г¶ГЁГ© ГЇГ® Г¬Г®Г¤ГіГ«Гѕ 2^256 Г¤Г«Гї 1000000000 ГЁГІГҐГ°Г Г¶ГЁГ© (Гў Г¬ГЄГ±): " << endl;
 	average_time_count(a_256, b_256, mod_256);
-	cout << endl << "Замеры среднего времени базовых операций по модулю 2^512 для 1000000000 итераций (в мкс): " << endl;
+	cout << endl << "Г‡Г Г¬ГҐГ°Г» Г±Г°ГҐГ¤Г­ГҐГЈГ® ГўГ°ГҐГ¬ГҐГ­ГЁ ГЎГ Г§Г®ГўГ»Гµ Г®ГЇГҐГ°Г Г¶ГЁГ© ГЇГ® Г¬Г®Г¤ГіГ«Гѕ 2^512 Г¤Г«Гї 1000000000 ГЁГІГҐГ°Г Г¶ГЁГ© (Гў Г¬ГЄГ±): " << endl;
 	average_time_count(a_512, b_512, mod_512);
-	cout << endl << "Замеры среднего времени базовых операций по модулю 2^1024 для 1000000000 итераций (в мкс): " << endl;
+	cout << endl << "Г‡Г Г¬ГҐГ°Г» Г±Г°ГҐГ¤Г­ГҐГЈГ® ГўГ°ГҐГ¬ГҐГ­ГЁ ГЎГ Г§Г®ГўГ»Гµ Г®ГЇГҐГ°Г Г¶ГЁГ© ГЇГ® Г¬Г®Г¤ГіГ«Гѕ 2^1024 Г¤Г«Гї 1000000000 ГЁГІГҐГ°Г Г¶ГЁГ© (Гў Г¬ГЄГ±): " << endl;
 	average_time_count(a_1024, b_1024, mod_1024);
-	cout << endl << "Замеры среднего времени базовых операций по модулю 2^2048 для 1000000000 итераций (в мкс): " << endl;
+	cout << endl << "Г‡Г Г¬ГҐГ°Г» Г±Г°ГҐГ¤Г­ГҐГЈГ® ГўГ°ГҐГ¬ГҐГ­ГЁ ГЎГ Г§Г®ГўГ»Гµ Г®ГЇГҐГ°Г Г¶ГЁГ© ГЇГ® Г¬Г®Г¤ГіГ«Гѕ 2^2048 Г¤Г«Гї 1000000000 ГЁГІГҐГ°Г Г¶ГЁГ© (Гў Г¬ГЄГ±): " << endl;
 	average_time_count(a_2048, b_2048, mod_2048);
 	cout << "-------------------------------------------------------" << endl;
 
