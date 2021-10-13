@@ -6,66 +6,66 @@
 
 using namespace std;
 using namespace std::chrono;
-using namespace System::Globalization; // Äëÿ NumberStyles::AllowHexSpecifier
+using namespace System::Globalization; // Для NumberStyles::AllowHexSpecifier
 using namespace System::Numerics;
 using namespace System;
 
-void input(string message, string el)  // Ââîä ýëåìåíòîâ
+void input(string message, string el)  // Ввод элементов
 {
-	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // Ïîëó÷àåì äåñêðèïòîð êîíñîëè
-	SetConsoleTextAttribute(hStdOut, 7);  // Ìåíÿåì öâåò òåêñòà íà ñåðûé
-	cout << message;  // Âûâîäèì ñîîáùåíèå
-	SetConsoleTextAttribute(hStdOut, 15);  // Ìåíÿåì öâåò òåêñòà íà áåëûé
-	cin >> el; // Ââîäèì ýëåìåíò
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // Получаем дескриптор консоли
+	SetConsoleTextAttribute(hStdOut, 7);  // Меняем цвет текста на серый
+	cout << message;  // Выводим сообщение
+	SetConsoleTextAttribute(hStdOut, 15);  // Меняем цвет текста на белый
+	cin >> el; // Вводим элемент
 }
 
-void print(string message, BigInteger el)  // Âûâîä ýëåìåíòîâ
+void print(string message, BigInteger el)  // Вывод элементов
 {
-	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // Ïîëó÷àåì äåñêðèïòîð êîíñîëè
-	SetConsoleTextAttribute(hStdOut, 7);  // Ìåíÿåì öâåò òåêñòà íà ñåðûé
-	cout << message;  // Âûâîäèì ñîîáùåíèå
-	SetConsoleTextAttribute(hStdOut, 15);  // Ìåíÿåì öâåò òåêñòà íà áåëûé
-	Console::WriteLine(el);  // Âûâîäèì ýëåìåíò
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // Получаем дескриптор консоли
+	SetConsoleTextAttribute(hStdOut, 7);  // Меняем цвет текста на серый
+	cout << message;  // Выводим сообщение
+	SetConsoleTextAttribute(hStdOut, 15);  // Меняем цвет текста на белый
+	Console::WriteLine(el);  // Выводим элемент
 }
 
-void print(string message, string el)  // Âûâîä ýëåìåíòîâ
+void print(string message, string el)  // Вывод элементов
 {
-	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // Ïîëó÷àåì äåñêðèïòîð êîíñîëè
-	SetConsoleTextAttribute(hStdOut, 7);  // Ìåíÿåì öâåò òåêñòà íà ñåðûé
-	cout << message;  // Âûâîäèì ñîîáùåíèå
-	SetConsoleTextAttribute(hStdOut, 15);  // Ìåíÿåì öâåò òåêñòà íà áåëûé
-	cout << el << endl;  // Âûâîäèì ýëåìåíò
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);  // Получаем дескриптор консоли
+	SetConsoleTextAttribute(hStdOut, 7);  // Меняем цвет текста на серый
+	cout << message;  // Выводим сообщение
+	SetConsoleTextAttribute(hStdOut, 15);  // Меняем цвет текста на белый
+	cout << el << endl;  // Выводим элемент
 }
-string elapsedTime(time_point<system_clock> start, time_point<system_clock> end)  // Êîíâåðòèðîâàíèå âðåìÿ â ñòðîêó
+string elapsedTime(time_point<system_clock> start, time_point<system_clock> end)  // Конвертирование время в строку
 {
-	int count = duration_cast<microseconds>(end - start).count();  // Ñ÷èòàåì ïðîøåäøåå âðåìÿ
-	return count > 1000 ? to_string(count / 1000) + " ìñ." : to_string(count) + " ìêñ.";  // Âîçâðàùàåì ñòðîêó
+	int count = duration_cast<microseconds>(end - start).count();  // Считаем прошедшее время
+	return count > 1000 ? to_string(count / 1000) + " мс." : to_string(count) + " мкс.";  // Возвращаем строку
 }
 
-long elapsedTime2(time_point<system_clock> start, time_point<system_clock> end)  // Êîíâåðòèðîâàíèå âðåìÿ â ñòðîêó
+long elapsedTime2(time_point<system_clock> start, time_point<system_clock> end)  // Конвертирование время в строку
 {
-	return duration_cast<microseconds>(end - start).count();  // Âîçâðàùàåì ïðîøåäøåå âðåìÿ â ìêñ
+	return duration_cast<microseconds>(end - start).count();  // Возвращаем прошедшее время в мкс
 }
 
 static BigInteger mod(BigInteger a, BigInteger b)
 {
-	if (a > BigInteger(0))  // Åñëè äåëèìîå áîëüøå 0
-		return a % b;  // Âîçâðàùàåì ìîäóëü a íà b
-	if ((a % b) != BigInteger(0))  // Åñëè ìîäóëü íå ðàâåí 0
-		// Âîçâðàùàåì îñòàòîê îò äåëåíèÿ
+	if (a > BigInteger(0))  // Если делимое больше 0
+		return a % b;  // Возвращаем модуль a на b
+	if ((a % b) != BigInteger(0))  // Если модуль не равен 0
+		// Возвращаем остаток от деления
 		return BigInteger::Subtract(BigInteger::Multiply(BigInteger::Add(BigInteger::Divide(BigInteger::Abs(a),
 			b), BigInteger(1)), b), BigInteger::Abs(a));
-	return 0;  // Âîçâðàùàåì 0
+	return 0;  // Возвращаем 0
 }
 
 void print(BigInteger a, BigInteger b, BigInteger c, BigInteger mod_amount) {
 	BigInteger result;
-	time_point<system_clock> start, end;  // Ïåðåìåííûå äëÿ èçìåðåíèÿ âðåìåíè
+	time_point<system_clock> start, end;  // Переменные для измерения времени
 
-	print("Ïåðâûé ýëåìåíò (a): ", a);
-	print("Âòîðîé ýëåìåíò (b): ", b);
-	print("Òðåòèé ýëåìåíò (c): ", c);
-	print("Ìîäóëü (mod): ", mod_amount);
+	print("Первый элемент (a): ", a);
+	print("Второй элемент (b): ", b);
+	print("Третий элемент (c): ", c);
+	print("Модуль (mod): ", mod_amount);
 	cout << endl;
 
 	start = system_clock::now();
@@ -76,64 +76,64 @@ void print(BigInteger a, BigInteger b, BigInteger c, BigInteger mod_amount) {
 	c = mod(c, mod_amount);
 	end = system_clock::now();
 
-	print("Òðåòèé ýëåìåíò ïî ìîäóëþ:", c);
-	print("Âðåìÿ ðàáîòû îïåðàöèè âçÿòèÿ ïî ìîäóëþ: ", elapsedTime(start, end));
+	print("Третий элемент по модулю:", c);
+	print("Время работы операции взятия по модулю: ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = mod(BigInteger::Add(c, a), mod_amount);
 	end = system_clock::now();
 
-	print("Ñóììà ïåðâîãî è òðåòüåãî ïî ìîäóëþ: ", result);
-	print("Âðåìÿ ðàáîòû îïåðàöèè ñëîæåíèÿ: ", elapsedTime(start, end));
+	print("Сумма первого и третьего по модулю: ", result);
+	print("Время работы операции сложения: ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = mod(BigInteger::Subtract(a, b), mod_amount);
 	end = system_clock::now();
 
-	print("Ðàçíèöà ïåðâîãî ýëåìåíòà è âòîðîãî ïî ìîäóëþ: ", result);
-	print("Âðåìÿ ðàáîòû îïåðàöèè ðàçíèöà: ", elapsedTime(start, end));
+	print("Разница первого элемента и второго по модулю: ", result);
+	print("Время работы операции разница: ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = mod(BigInteger::Multiply(a, b), mod_amount);
 	end = system_clock::now();
 
-	print("Óìíîæåíèå ïåðâîãî ýëåìåíòà íà âòîðîé ïî ìîäóëþ: ", result);
-	print("Âðåìÿ ðàáîòû îïåðàöèè óìíîæåíèÿ: ", elapsedTime(start, end));
+	print("Умножение первого элемента на второй по модулю: ", result);
+	print("Время работы операции умножения: ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = mod(BigInteger::Pow(a, 2), mod_amount);
 	end = system_clock::now();
 
-	print("Âîçâåäåíèå ïåðâîãî ýëåìåíòà â êâàäðàò ïî ìîäóëþ (ìîÿ ôóíêöèÿ): ", result);
-	print("Âðåìÿ ðàáîòû îïåðàöèè âîçâåäåíèÿ â êâàäðàò ïåðâîãî ýëåìåíòà: ", elapsedTime(start, end));
+	print("Возведение первого элемента в квадрат по модулю (моя функция): ", result);
+	print("Время работы операции возведения в квадрат первого элемента: ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = BigInteger::ModPow(a, BigInteger(2), mod_amount);
 	end = system_clock::now();
 
-	print("Âîçâåäåíèå ïåðâîãî ýëåìåíòà â êâàäðàò ïî ìîäóëþ (âñòðîåííàÿ ôóíêöèÿ): ", result);
-	print("Âðåìÿ ðàáîòû îïåðàöèè âîçâåäåíèÿ â êâàäðàò ïåðâîãî ýëåìåíòà: ", elapsedTime(start, end));
+	print("Возведение первого элемента в квадрат по модулю (встроенная функция): ", result);
+	print("Время работы операции возведения в квадрат первого элемента: ", elapsedTime(start, end));
 	cout << endl;
 
 	start = system_clock::now();
 	result = BigInteger::Divide(a, b);
 	end = system_clock::now();
 
-	print("Öåëàÿ ÷àñòü îò äåëåíèÿ a íà b: ", result);
-	print("Âðåìÿ ðàáîòû îïåðàöèè äåëåíèå: ", elapsedTime(start, end));
+	print("Целая часть от деления a на b: ", result);
+	print("Время работы операции деление: ", elapsedTime(start, end));
 	cout << endl;
 
-	print("Òåñò íà êîððåêòíîñòü (ïðîâåðêà äèñòðèáóòèâíîñòè): ", "");
-	print("Íàø ïåðâûé ýëåìåíò (a): ", a);
-	print("Íàø âòîðîé ýëåìåíò (b): ", b);
-	print("Íàø òðåòèé ýëåìåíò (c): ", BigInteger::Subtract(c, BigInteger(1)));
-	print("Ðåçóëüòàò (a+b)*c : ", mod(BigInteger::Multiply(BigInteger::Add(a, b), BigInteger::Subtract(c, BigInteger(1))), mod_amount));
-	print("Ðåçóëüòàò b*c+c*a : ", mod(BigInteger::Add(BigInteger::Multiply(b, BigInteger::Subtract(c, BigInteger(1))), BigInteger::Multiply(BigInteger::Subtract(c, BigInteger(1)), a)), mod_amount));
+	print("Тест на корректность (проверка дистрибутивности): ", "");
+	print("Наш первый элемент (a): ", a);
+	print("Наш второй элемент (b): ", b);
+	print("Наш третий элемент (c): ", BigInteger::Subtract(c, BigInteger(1)));
+	print("Результат (a+b)*c : ", mod(BigInteger::Multiply(BigInteger::Add(a, b), BigInteger::Subtract(c, BigInteger(1))), mod_amount));
+	print("Результат b*c+c*a : ", mod(BigInteger::Add(BigInteger::Multiply(b, BigInteger::Subtract(c, BigInteger(1))), BigInteger::Multiply(BigInteger::Subtract(c, BigInteger(1)), a)), mod_amount));
 	cout << endl;
 }
 
@@ -153,12 +153,12 @@ void average_time_count(BigInteger a, BigInteger b, BigInteger mod_amount, BigIn
 	BigInteger average_time_count_mul_my = BigInteger(0);
 	BigInteger average_time_count_div_my = BigInteger(0);
 	BigInteger average_time_count_pow2_my = BigInteger(0);
-	time_point<system_clock> start, end;  // Ïåðåìåííûå äëÿ èçìåðåíèÿ âðåìåíè
+	time_point<system_clock> start, end;  // Переменные для измерения времени
 	start = system_clock::now();
 	a = mod(a, mod_amount);
 	end = system_clock::now();
 
-	while (BigInteger::Compare(num_iter, iter_amount) != 0) { // Ïîêà íå ïðîéäåò iter_amount èòåðàöèé, äåëàåì
+	while (BigInteger::Compare(num_iter, iter_amount) != 0) { // Пока не пройдет iter_amount итераций, делаем
 
 		start = system_clock::now();
 		result = BigInteger::Remainder(BigInteger::Add(a, b), mod_amount);
@@ -230,76 +230,76 @@ void average_time_count(BigInteger a, BigInteger b, BigInteger mod_amount, BigIn
 	//average_time_count_mul = BigInteger::Divide(average_time_count_mul, BigInteger(iter_amount));
 	//average_time_count_div = BigInteger::Divide(average_time_count_div, BigInteger(iter_amount));
 	if (average_time_count_add > BigInteger(1000)) 
-		print("Âðåìÿ ðàáîòû îïåðàöèè Add (â ìñ): ", BigInteger::Divide(average_time_count_add, BigInteger(1000)));
-	else print("Âðåìÿ ðàáîòû îïåðàöèè Add (â ìêñ): ", average_time_count_add);
+		print("Время работы операции Add (в мс): ", BigInteger::Divide(average_time_count_add, BigInteger(1000)));
+	else print("Время работы операции Add (в мкс): ", average_time_count_add);
 
 	if (average_time_count_add_my > BigInteger(1000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè Add (my mod_func, â ìñ): ", BigInteger::Divide(average_time_count_add_my, BigInteger(1000)));
-	else print("Âðåìÿ ðàáîòû îïåðàöèè Add (my mod_func, â ìêñ): ", average_time_count_add_my);
+		print("Время работы операции Add (my mod_func, в мс): ", BigInteger::Divide(average_time_count_add_my, BigInteger(1000)));
+	else print("Время работы операции Add (my mod_func, в мкс): ", average_time_count_add_my);
 
 	if (average_time_count_sub > BigInteger(1000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè Subtract (â ìñ): ", BigInteger::Divide(average_time_count_sub, BigInteger(1000)));
-	else print("Âðåìÿ ðàáîòû îïåðàöèè Subtract (â ìêñ): ", average_time_count_sub);
+		print("Время работы операции Subtract (в мс): ", BigInteger::Divide(average_time_count_sub, BigInteger(1000)));
+	else print("Время работы операции Subtract (в мкс): ", average_time_count_sub);
 
 	if (average_time_count_sub_my > BigInteger(1000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè Subtract (my mod_func, â ìñ): ", BigInteger::Divide(average_time_count_sub_my, BigInteger(1000)));
-	else print("Âðåìÿ ðàáîòû îïåðàöèè Subtract (my mod_func, â ìêñ): ", average_time_count_sub_my);
+		print("Время работы операции Subtract (my mod_func, в мс): ", BigInteger::Divide(average_time_count_sub_my, BigInteger(1000)));
+	else print("Время работы операции Subtract (my mod_func, в мкс): ", average_time_count_sub_my);
 	//--------------------Multiply--------------------------------------
 	if (average_time_count_mul > BigInteger(1000000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè Multiply (â ñ): ", BigInteger::Divide(average_time_count_mul, BigInteger(1000000)));
+		print("Время работы операции Multiply (в с): ", BigInteger::Divide(average_time_count_mul, BigInteger(1000000)));
 	else 
 		if (average_time_count_mul > BigInteger(1000))
-			print("Âðåìÿ ðàáîòû îïåðàöèè Multiply (â ìñ): ", BigInteger::Divide(average_time_count_mul, BigInteger(1000)));
-		else print("Âðåìÿ ðàáîòû îïåðàöèè Multiply (â ìêñ): ", average_time_count_mul);
+			print("Время работы операции Multiply (в мс): ", BigInteger::Divide(average_time_count_mul, BigInteger(1000)));
+		else print("Время работы операции Multiply (в мкс): ", average_time_count_mul);
 	//---------------------Multiply(My mod_func)------------------------
 	if (average_time_count_mul_my > BigInteger(1000000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè Multiply (my mod_func, â ñ): ", BigInteger::Divide(average_time_count_mul_my, BigInteger(1000000)));
+		print("Время работы операции Multiply (my mod_func, в с): ", BigInteger::Divide(average_time_count_mul_my, BigInteger(1000000)));
 	else
 		if (average_time_count_mul_my > BigInteger(1000))
-			print("Âðåìÿ ðàáîòû îïåðàöèè Multiply (my mod_func, â ìñ): ", BigInteger::Divide(average_time_count_mul_my, BigInteger(1000)));
-		else print("Âðåìÿ ðàáîòû îïåðàöèè Multiply (my mod_func, â ìêñ): ", average_time_count_mul_my);
+			print("Время работы операции Multiply (my mod_func, в мс): ", BigInteger::Divide(average_time_count_mul_my, BigInteger(1000)));
+		else print("Время работы операции Multiply (my mod_func, в мкс): ", average_time_count_mul_my);
 	//-------------------------------------------------------------------
 	if (average_time_count_div > BigInteger(1000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè Divide (â ìñ): ", BigInteger::Divide(average_time_count_div, BigInteger(1000)));
-	else print("Âðåìÿ ðàáîòû îïåðàöèè Divide (â ìêñ): ", average_time_count_div);
+		print("Время работы операции Divide (в мс): ", BigInteger::Divide(average_time_count_div, BigInteger(1000)));
+	else print("Время работы операции Divide (в мкс): ", average_time_count_div);
 
 	if (average_time_count_div_my > BigInteger(1000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè Divide (my mod_func, â ìñ): ", BigInteger::Divide(average_time_count_div_my, BigInteger(1000)));
-	else print("Âðåìÿ ðàáîòû îïåðàöèè Divide (my mod_func, â ìêñ): ", average_time_count_div_my);
+		print("Время работы операции Divide (my mod_func, в мс): ", BigInteger::Divide(average_time_count_div_my, BigInteger(1000)));
+	else print("Время работы операции Divide (my mod_func, в мкс): ", average_time_count_div_my);
 	//---------------------------ModPow----------------------------------------
 	if (average_time_count_pow2 > BigInteger(1000000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè ModPow (a^2, â ñ): ", BigInteger::Divide(average_time_count_pow2, BigInteger(1000000)));
+		print("Время работы операции ModPow (a^2, в с): ", BigInteger::Divide(average_time_count_pow2, BigInteger(1000000)));
 	else 
 		if (average_time_count_pow2 > BigInteger(1000))
-			print("Âðåìÿ ðàáîòû îïåðàöèè ModPow (a^2, â ìñ): ", BigInteger::Divide(average_time_count_pow2, BigInteger(1000)));
-		else print("Âðåìÿ ðàáîòû îïåðàöèè ModPow (a^2, â ìêñ): ", average_time_count_pow2);
+			print("Время работы операции ModPow (a^2, в мс): ", BigInteger::Divide(average_time_count_pow2, BigInteger(1000)));
+		else print("Время работы операции ModPow (a^2, в мкс): ", average_time_count_pow2);
 	//----------------------------Pow(Rem_func)------------------------------------
 	if (average_time_count_pow2_rem > BigInteger(1000000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè Pow (a^2, Rem_func, â ñ): ", BigInteger::Divide(average_time_count_pow2_rem, BigInteger(1000000)));
+		print("Время работы операции Pow (a^2, Rem_func, в с): ", BigInteger::Divide(average_time_count_pow2_rem, BigInteger(1000000)));
 	else
 		if (average_time_count_pow2_rem > BigInteger(1000))
-			print("Âðåìÿ ðàáîòû îïåðàöèè Pow (a^2, Rem_func, â ìñ): ", BigInteger::Divide(average_time_count_pow2_rem, BigInteger(1000)));
-		else print("Âðåìÿ ðàáîòû îïåðàöèè Pow (a^2, Rem_func, â ìêñ): ", average_time_count_pow2_rem);
+			print("Время работы операции Pow (a^2, Rem_func, в мс): ", BigInteger::Divide(average_time_count_pow2_rem, BigInteger(1000)));
+		else print("Время работы операции Pow (a^2, Rem_func, в мкс): ", average_time_count_pow2_rem);
 	//----------------------------Pow(my mod_func)------------------------------------
 	if (average_time_count_pow2_my > BigInteger(1000000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè Pow (a^2, my mod_func, â ñ): ", BigInteger::Divide(average_time_count_pow2_my, BigInteger(1000000)));
+		print("Время работы операции Pow (a^2, my mod_func, в с): ", BigInteger::Divide(average_time_count_pow2_my, BigInteger(1000000)));
 	else 
 		if (average_time_count_pow2_my > BigInteger(1000))
-			print("Âðåìÿ ðàáîòû îïåðàöèè Pow (a^2, my mod_func, â ìñ): ", BigInteger::Divide(average_time_count_pow2_my, BigInteger(1000)));
-		else print("Âðåìÿ ðàáîòû îïåðàöèè Pow (a^2, my mod_func, â ìêñ): ", average_time_count_pow2_my);
+			print("Время работы операции Pow (a^2, my mod_func, в мс): ", BigInteger::Divide(average_time_count_pow2_my, BigInteger(1000)));
+		else print("Время работы операции Pow (a^2, my mod_func, в мкс): ", average_time_count_pow2_my);
 	//----------------------------ModPow (a^b)-----------------------------------------
 	if (average_time_count_powb > BigInteger(1000000))
-		print("Âðåìÿ ðàáîòû îïåðàöèè ModPow (a^b, â ñ): ", BigInteger::Divide(average_time_count_powb, BigInteger(1000000)));
+		print("Время работы операции ModPow (a^b, в с): ", BigInteger::Divide(average_time_count_powb, BigInteger(1000000)));
 	else 
 		if (average_time_count_powb > BigInteger(1000))
-			print("Âðåìÿ ðàáîòû îïåðàöèè ModPow (a^b, â ìñ): ", BigInteger::Divide(average_time_count_powb, BigInteger(1000)));
-		else print("Âðåìÿ ðàáîòû îïåðàöèè ModPow (a^b, â ìêñ): ", average_time_count_powb);
+			print("Время работы операции ModPow (a^b, в мс): ", BigInteger::Divide(average_time_count_powb, BigInteger(1000)));
+		else print("Время работы операции ModPow (a^b, в мкс): ", average_time_count_powb);
 }
 
 void main()
 {
-	setlocale(LC_ALL, "rus");  // Ïîääåðæêà êèðèëëèöû
-	// Ïåðåìåííûå (seed)
+	setlocale(LC_ALL, "rus");  // Поддержка кириллицы
+	// Переменные (seed)
 	BigInteger a_256 = BigInteger::Subtract(BigInteger::Pow(BigInteger(2), 256), BigInteger(50000000000));
 	BigInteger b_256 = BigInteger::Subtract(BigInteger::Pow(BigInteger(2), 256), BigInteger(10000000000));
 	BigInteger c_256 = BigInteger::Add(BigInteger::Pow(BigInteger(2), 256), BigInteger(500));
@@ -316,7 +316,7 @@ void main()
 	BigInteger b_2048 = BigInteger::Subtract(BigInteger::Pow(BigInteger(2), 2048), BigInteger(10000000000));
 	BigInteger c_2048 = BigInteger::Add(BigInteger::Pow(BigInteger(2), 2048), BigInteger(500));
 
-	// Ìîäóëè
+	// Модули
 	BigInteger mod_256 = BigInteger::Pow(BigInteger(2), 256);
 	BigInteger mod_512 = BigInteger::Pow(BigInteger(2), 512);
 	BigInteger mod_1024 = BigInteger::Pow(BigInteger(2), 1024);
@@ -338,23 +338,23 @@ void main()
 	Iter_amount[5] = 1000000000; // 1 000 000 000
 	cout << "-------------------------------------------------------" << endl;
 	/*for (int i = 0; i < sizeIter_amount; i++) {
-		cout << "Çàìåðû ñðåäíåãî âðåìåíè áàçîâûõ îïåðàöèé ïî ìîäóëþ 2^256 äëÿ " << Iter_amount[i] << " èòåðàöèé: " << endl;
+		cout << "Замеры среднего времени базовых операций по модулю 2^256 для " << Iter_amount[i] << " итераций: " << endl;
 		average_time_count(a_256, b_256, mod_256, BigInteger(Iter_amount[i]));
-		cout << endl << "Çàìåðû ñðåäíåãî âðåìåíè áàçîâûõ îïåðàöèé ïî ìîäóëþ 2^512 äëÿ " << Iter_amount[i] << " èòåðàöèé: " << endl;
+		cout << endl << "Замеры среднего времени базовых операций по модулю 2^512 для " << Iter_amount[i] << " итераций: " << endl;
 		average_time_count(a_512, b_512, mod_512, BigInteger(Iter_amount[i]));
-		cout << endl << "Çàìåðû ñðåäíåãî âðåìåíè áàçîâûõ îïåðàöèé ïî ìîäóëþ 2^1024 äëÿ " << Iter_amount[i] << " èòåðàöèé: " << endl;
+		cout << endl << "Замеры среднего времени базовых операций по модулю 2^1024 для " << Iter_amount[i] << " итераций: " << endl;
 		average_time_count(a_1024, b_1024, mod_1024, BigInteger(Iter_amount[i]));
-		cout << endl << "Çàìåðû ñðåäíåãî âðåìåíè áàçîâûõ îïåðàöèé ïî ìîäóëþ 2^2048 äëÿ " << Iter_amount[i] << " èòåðàöèé: " << endl;
+		cout << endl << "Замеры среднего времени базовых операций по модулю 2^2048 для " << Iter_amount[i] << " итераций: " << endl;
 		average_time_count(a_2048, b_2048, mod_2048, BigInteger(Iter_amount[i]));
 		cout << "-------------------------------------------------------" << endl;
 	}*/
-	cout << "Çàìåðû ñðåäíåãî âðåìåíè áàçîâûõ îïåðàöèé ïî ìîäóëþ 2^256 äëÿ " << Iter_amount[5] << " èòåðàöèé: " << endl;
+	cout << "Замеры среднего времени базовых операций по модулю 2^256 для " << Iter_amount[5] << " итераций: " << endl;
 	average_time_count(a_256, b_256, mod_256, BigInteger(Iter_amount[5]));
-	cout << endl << "Çàìåðû ñðåäíåãî âðåìåíè áàçîâûõ îïåðàöèé ïî ìîäóëþ 2^512 äëÿ " << Iter_amount[5] << " èòåðàöèé: " << endl;
+	cout << endl << "Замеры среднего времени базовых операций по модулю 2^512 для " << Iter_amount[5] << " итераций: " << endl;
 	average_time_count(a_512, b_512, mod_512, BigInteger(Iter_amount[5]));
-	cout << endl << "Çàìåðû ñðåäíåãî âðåìåíè áàçîâûõ îïåðàöèé ïî ìîäóëþ 2^1024 äëÿ " << Iter_amount[5] << " èòåðàöèé: " << endl;
+	cout << endl << "Замеры среднего времени базовых операций по модулю 2^1024 для " << Iter_amount[5] << " итераций: " << endl;
 	average_time_count(a_1024, b_1024, mod_1024, BigInteger(Iter_amount[5]));
-	cout << endl << "Çàìåðû ñðåäíåãî âðåìåíè áàçîâûõ îïåðàöèé ïî ìîäóëþ 2^2048 äëÿ " << Iter_amount[5] << " èòåðàöèé: " << endl;
+	cout << endl << "Замеры среднего времени базовых операций по модулю 2^2048 для " << Iter_amount[5] << " итераций: " << endl;
 	average_time_count(a_2048, b_2048, mod_2048, BigInteger(Iter_amount[5]));
 	cout << "-------------------------------------------------------" << endl;
 	delete[] Iter_amount;
